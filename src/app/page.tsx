@@ -82,9 +82,9 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const onSubmitInit: SubmitHandler<InitialFormFields> = async (data) => {
-    const values = getInitValues();
-    await handleFavoriteInterestList(values.interest);
-    setFormPage(2);
+      const values = getInitValues();
+      await handleFavoriteInterestList(values.interest);
+      setFormPage(2);
   }
 
   const onSubmitSec: SubmitHandler<SecondFormFields> = async (data) => {
@@ -217,7 +217,16 @@ export default function Home() {
               </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button className="bg-zinc-100 text-zinc-600 font-bold border-zinc-400 border-2" onClick={handleBackPage} disabled={isSubmitting}><ArrowLeftOutlined className="mr-2" />Back</Button>
+              <Button
+                className="bg-zinc-100 text-zinc-600 font-bold border-zinc-400 border-2"
+                onClick={ (e) => {
+                  e.preventDefault()
+                  handleBackPage()
+                }}
+                disabled={isSubmitting}
+              >
+                <ArrowLeftOutlined className="mr-2" />Back
+              </Button>
               <Button className={`font-bold ${isSubmitting ? "bg-zinc-100 text-zinc-600 border-zinc-400 border-2" : "bg-blue-600"}`} type="submit" disabled={isSubmitting}>{ isSubmitting ? "Please wait..." : "Next"  }</Button>
             </CardFooter>
           </form>
