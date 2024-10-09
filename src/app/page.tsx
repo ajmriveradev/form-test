@@ -82,19 +82,14 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const onSubmitInit: SubmitHandler<InitialFormFields> = async (data) => {
-    console.log("CHECK 1: ", data)
     const values = getInitValues();
     await handleFavoriteInterestList(values.interest);
-    setFormPage(2)
     setFormPage(2);
   }
 
   const onSubmitSec: SubmitHandler<SecondFormFields> = async (data) => {
-    console.log("CHECK 2: ", data)
     setIsSubmitting(true);
   }
-
-  console.log("ERRORS: ", errorsInit, errorsSec);
 
   const handleFavoriteInterestList: any = (interest: Interests) => {
     switch (interest) {
@@ -117,7 +112,6 @@ export default function Home() {
   }
 
   const handleBackPage = () => {
-    console.log("GO BACK")
     setFormPage(1);
   }
 
